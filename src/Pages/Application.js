@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 
 const Application = () => {
     return (
-        <div>
-            <h1>Welcome to our simple Website</h1>
-            <p>To try our app, Click on this link <Link to='/todo'>Todo-app</Link></p>
-            <p>To try our app, Login first <Link to='/login'>Login</Link></p>
+        <div className='container d-flex justify-content-center'>
+            <div>
+                <h1>Welcome to our simple Website</h1>
+                <p className='text-center'>To try our app, Click on this link to use the <Link to='/todo'>Todo-app</Link></p>
+                <p className='text-center'>😊</p>
+            </div>
         </div>
     );
 };

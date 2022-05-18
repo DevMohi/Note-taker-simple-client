@@ -9,7 +9,7 @@ const Todo = () => {
     const [select, setSelect] = useState('')
     useEffect(() => {
 
-        fetch("http://localhost:5000/tasks")
+        fetch("https://quiet-dusk-67625.herokuapp.com/tasks")
             .then(res => res.json())
             .then(data => setTasks(data))
     }, [isReload]);
@@ -20,7 +20,7 @@ const Todo = () => {
         const taskDesc = event.target.description.value;
 
 
-        fetch("http://localhost:5000/task", {
+        fetch("https://quiet-dusk-67625.herokuapp.com/task", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -38,12 +38,10 @@ const Todo = () => {
 
     }
 
-    const handleComplete = (id) => {
-        // console.log(id) 
-        const selected = tasks.filter(task => task._id === id)
-        console.log(selected)
-        const result = selected.map(select => setSelect(select._id))
-        toast('task completed ')
+    const handleComplete = (index) => {
+        const newTasks = [...tasks];
+        newTasks[index].completed = true;
+        setTasks(newTasks)
     }
     return (
         <div className='container'>
@@ -53,14 +51,14 @@ const Todo = () => {
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="Your name"
+                            placeholder="Task Name"
                             aria-label="Username"
                             name="task"
                         />
                     </div>
 
                     <div className="input-group">
-                        <span className="input-group-text">Your notes</span>
+                        <span className="input-group-text">Task Description</span>
                         <textarea
                             className="form-control"
                             aria-label="With textarea"
